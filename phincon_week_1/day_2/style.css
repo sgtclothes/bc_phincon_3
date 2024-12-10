@@ -1,0 +1,17 @@
+#name {
+    width: 200px;
+}
+.bc-yellow {
+    background-color: yellow;
+}
+#name,
+#email,
+#password {
+    width: 200px;
+}
+#gender {
+    width: 207px;
+}
+label {
+    font-weight: bold;
+}

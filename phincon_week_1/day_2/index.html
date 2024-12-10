@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Form Students</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1 style="color: blue; text-decoration: underline">Form Students</h1>
+        <form>
+            <div>
+                <label style="margin-right: 30px" for="name">Name</label>
+                <input id="name" type="text" placeholder="Fill your name here" />
+            </div>
+            <br />
+            <div>
+                <label for="email" style="margin-right: 30px">Email</label>
+                <input id="email" type="email" placeholder="Fill your email here" />
+            </div>
+            <br />
+            <div>
+                <label for="password" style="margin-right: 6px">Password</label>
+                <input id="password" type="password" placeholder="Fill your password here" />
+            </div>
+            <br />
+            <div>
+                <label for="gender" style="margin-right: 20px">Gender</label>
+                <select id="gender">
+                    <option value="">Select your gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <br />
+            <div id="specialist">
+                <label for="specialist">Specialist</label>
+                <br />
+                <div style="margin-top: 10px">
+                    <input type="radio" name="specialist" id="javascript" />
+                    <label for="javascript">Javascript</label>
+                    <input type="radio" name="specialist" id="android" />
+                    <label for="android">Android</label>
+                    <input type="radio" name="specialist" id="ios" />
+                    <label for="ios">IOS Swift</label>
+                </div>
+            </div>
+            <br />
+            <div>
+                <button style="width: 200px">Submit</button>
+            </div>
+        </form>
+    </body>
+</html>

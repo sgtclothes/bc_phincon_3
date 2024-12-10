@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Form Table</title>
+        <style>
+            .w-100 {
+                width: 100%;
+            }
+            tr > td {
+                font-weight: bold;
+                padding-bottom: 5px;
+            }
+            .bg-blue {
+                background-color: rgb(170, 212, 250);
+            }
+            .container {
+                background-color: white;
+                margin: auto;
+                width: 400px;
+                margin-top: 100px;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body class="bg-blue">
+        <div class="container">
+            <h1 style="color: blue; text-decoration: underline">Form Students</h1>
+            <form>
+                <table>
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td><input class="w-100" id="name" type="text" placeholder="Fill your name here" /></td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td><input class="w-100" id="email" type="email" placeholder="Fill your email here" /></td>
+                        </tr>
+                        <tr>
+                            <td>Password</td>
+                            <td>
+                                <input
+                                    class="w-100"
+                                    id="password"
+                                    type="password"
+                                    placeholder="Fill your password here"
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>
+                                <select id="gender" class="w-100">
+                                    <option value="">Select your gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Specialist</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="radio" name="specialist" id="javascript" />
+                                <label for="javascript">Javascript</label>
+                                <input type="radio" name="specialist" id="android" />
+                                <label for="android">Android</label>
+                                <input type="radio" name="specialist" id="ios" />
+                                <label for="ios">IOS Swift</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button class="w-100">Submit</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>
