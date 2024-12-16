@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>DOM Introduction</title>
+    </head>
+    <body>
+        <div id="container">Hello World</div>
+        <button id="btn">Submit</button>
+        <button id="btn-2" onclick="onClickSubmitTwo()">Submit 2</button>
+        <script>
+            let i = 1;
+            const container = document.getElementById("container");
+            const button = document.getElementById("btn");
+            container.textContent = "Phincon Academy";
+            container.style.color = "blue";
+            container.style.fontSize = "50px";
+            container.addEventListener("click", () => {
+                alert("PHINCON ACADEMY");
+            });
+            button.addEventListener("click", () => {
+                console.log(i);
+                i++;
+            });
+
+            function onClickSubmitTwo() {
+                console.log("Submit 2");
+            }
+        </script>
+    </body>
+</html>
