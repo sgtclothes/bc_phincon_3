@@ -1,0 +1,155 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Express CRUD",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "paths": {
+    "/api/products": {
+      "get": {
+        "summary": "Get All Products",
+        "description": "Get All Products",
+        "operationId": "getAllProducts",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Product",
+        "description": "Create Product",
+        "operationId": "createProduct",
+        "parameters": [
+          {
+            "name": "",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "category": {
+                    "type": "string",
+                    "example": "Electronics"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Television"
+                  },
+                  "price": {
+                    "type": "number",
+                    "example": 20000000
+                  },
+                  "stock": {
+                    "type": "number",
+                    "example": 500
+                  }
+                }
+              },
+              "examples": {
+                "Create Product": {
+                  "value": {
+                    "category": "Electronics",
+                    "name": "Television",
+                    "price": 20000000,
+                    "stock": 500
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/products/1": {
+      "get": {
+        "summary": "Get Product by ID",
+        "description": "Get Product by ID",
+        "operationId": "getProductById",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/products/79b4ea94-c4e6-47e4-aef5-118d904897f2": {
+      "put": {
+        "summary": "Update Product",
+        "description": "Update Product",
+        "operationId": "updateProduct",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "category": {
+                    "type": "string",
+                    "example": "Electronics"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Microwave"
+                  },
+                  "price": {
+                    "type": "number",
+                    "example": 10000000
+                  },
+                  "stock": {
+                    "type": "number",
+                    "example": 100
+                  }
+                }
+              },
+              "examples": {
+                "Update Product": {
+                  "value": {
+                    "category": "Electronics",
+                    "name": "Microwave",
+                    "price": 10000000,
+                    "stock": 100
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Product",
+        "description": "Delete Product",
+        "operationId": "deleteProduct",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "tags": []
+}

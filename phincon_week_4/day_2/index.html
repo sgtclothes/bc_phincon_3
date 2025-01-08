@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <title>Belajar React Phincon Academy</title>
+        <style>
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                margin: 20px auto;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 10px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .title {
+                font-size: 24px;
+                font-weight: bold;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .grade {
+                font-size: 18px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+            .student {
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                padding: 10px;
+                margin-bottom: 10px;
+                background-color: #f9f9f9;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="test"></div>
+
+        <script type="text/babel">
+            const { useState, useEffect } = React;
+            const Children = () => {
+                const [count, setCount] = useState({
+                    count: 1,
+                });
+                const [letter, setLetter] = useState("A");
+
+                const handleClickDecrement = () => {
+                    if (count.count > 1) {
+                        setCount((prevState) => ({ ...prevState, count: prevState.count - 1 }));
+                    }
+                };
+                const handleClickIncrement = () => {
+                    if (count.count < 10) {
+                        setCount((prevState) => ({ ...prevState, count: prevState.count + 1 }));
+                    }
+                };
+                useEffect(() => {
+                    console.log("halo " + letter);
+                }, []);
+                return (
+                    <>
+                        <div>{count.count}</div>
+                        <div style={{ display: "flex" }}>
+                            <button onClick={handleClickDecrement}>-</button>
+                            <button onClick={handleClickIncrement}>+</button>
+                        </div>
+                        <div>{letter}</div>
+                        <button onClick={() => setLetter("B")}>Change Letter to B</button>
+                        <img src={img} width="200px" height="200px" />
+                    </>
+                );
+            };
+            const ThirdParent = () => {
+                const students = [
+                    { id: 1, name: "John Doe", grade: "A" },
+                    { id: 2, name: "Jane Doe", grade: "B" },
+                    { id: 3, name: "Bob Smith", grade: "C" },
+                ];
+                return (
+                    <>
+                        {students.map((student) => (
+                            <div
+                                style={{ width: "200px", textAlign: "center", marginTop: "20px" }}
+                                key={student.id}
+                                className="student"
+                            >
+                                <div>{student.name}</div>
+                                <div className="grade">{student.grade}</div>
+                            </div>
+                        ))}
+                    </>
+                );
+            };
+            const SecondParent = () => {
+                const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+                return (
+                    <>
+                        <div style={{ display: "flex", flexWrap: "wrap" }}>
+                            {numbers.map((number, index) => (
+                                <div key={index}>{number}</div>
+                            ))}
+                        </div>
+                    </>
+                );
+            };
+            const FirstParent = () => {
+                const title = "Phincon Academy";
+                const sum = 5 + 5;
+                const style = { color: "red", textDecoration: "underline" };
+
+                return (
+                    <>
+                        <div className="container">
+                            <h1 className="title" style={style}>
+                                {sum === 7 ? "Hasilnya 7" : "Hasilnya bukan 7"}
+                            </h1>
+                            <h2>{title}</h2>
+                            <SecondParent />
+                            <ThirdParent />
+                            <Children />
+                        </div>
+                    </>
+                );
+            };
+            const container = document.getElementById("test");
+            const root = ReactDOM.createRoot(container);
+            root.render(<FirstParent />);
+        </script>
+    </body>
+</html>

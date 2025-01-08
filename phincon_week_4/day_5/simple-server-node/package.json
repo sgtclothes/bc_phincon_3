@@ -1,0 +1,15 @@
+{
+    "name": "project-phincon",
+    "version": "2.0.0",
+    "description": "This project is to help phinconners to learn programming materials",
+    "main": "server.js",
+    "dependencies": {
+        "lodash": "^4.17.21"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "author": "sigit",
+    "license": "ISC"
+}

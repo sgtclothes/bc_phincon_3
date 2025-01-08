@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <title>Pokemon Component</title>
+        <style>
+            .container {
+                display: flex;
+                flex-wrap: wrap;
+                width: 200px;
+                height: 200px;
+                margin: auto;
+                border: 1px solid black;
+            }
+
+            .container h1 {
+                text-align: center;
+            }
+
+            .container img {
+                width: 100%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="mydiv"></div>
+
+        <script type="text/babel">
+            const { useState, useEffect } = React;
+            const PokemonComponent = () => {
+                const [img, setImg] = useState("");
+                const [datas, setData] = useState([
+                    {
+                        id: "hfsdkjfhljsa",
+                        img: "a",
+                        name: "a",
+                    },
+                    {
+                        id: "jdsaldaslk",
+                        img: "b",
+                        name: "b",
+                    },
+                ]);
+                const [isFinishFetchAll, setIsFinishFetchAll] = useState(true);
+                // useEffect(() => {
+                //     (async () => {
+                //         const response = await fetch("https://pokeapi.co/api/v2/pokemon");
+                //         const dataPokemon = await response.json();
+                //         const lastIndexPokemon = dataPokemon.results.length - 1;
+                //         for (let i in dataPokemon.results) {
+                //             const dataImage = await fetch(
+                //                 "https://pokeapi.co/api/v2/pokemon/" + dataPokemon.results[i].name
+                //             );
+                //             const img = await dataImage.json();
+                //             const imgPokemon = img.sprites.front_default;
+                //             setData((data) => [...data, {id: dataPokemon.results[i].name, img: imgPokemon, name: dataPokemon.results[i].name }]);
+                //             if (Number(i) === lastIndexPokemon) {
+                //                 setIsFinishFetchAll(true);
+                //             }
+                //         }
+                //     })();
+                // }, []);
+                return (
+                    <>
+                        <div className="container">
+                            {datas.length > 0 &&
+                                isFinishFetchAll &&
+                                datas.map((data) => {
+                                    return (
+                                        <div key={data.id}>
+                                            <img src={data.img} alt="" />
+                                            <h1>{data.name}</h1>
+                                        </div>
+                                    );
+                                })}
+                        </div>
+                    </>
+                );
+            };
+            function Hello() {
+                return (
+                    <>
+                        <div>
+                            <h1>Pokemon API</h1>
+                            <PokemonComponent />
+                        </div>
+                    </>
+                );
+            }
+
+            const container = document.getElementById("mydiv");
+            const root = ReactDOM.createRoot(container);
+            root.render(<Hello />);
+        </script>
+    </body>
+</html>

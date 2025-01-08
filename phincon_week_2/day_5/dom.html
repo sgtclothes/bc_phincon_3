@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="https://media.licdn.com/dms/image/v2/D560BAQG99Xf8yTVZAw/company-logo_200_200/company-logo_200_200/0/1702864298171?e=2147483647&v=beta&t=vlV9cqla3qLOcRU7NetWjY3dL39FConfn5WO9uQwgxU"
+        />
+        <title>DOM Selectors</title>
+    </head>
+    <body id="body">
+        <h1>Phincon Academy</h1>
+        <ul id="list" class="list" name="list">
+            <li>Rofi</li>
+            <li>Zaenal</li>
+        </ul>
+        <!-- Ini element -->
+        <ul id="listTwo" class="list" name="list"> 
+        <ul id="listTwo" class="list" name="list">
+            <li>Sigit</li>
+            <li>Haidar</li>
+        </ul>
+        <ul id="listThree"></ul>
+        <button id="btn">Klik Saya</button>
+        <script src="assets/javascripts/dom.js"></script>
+        <script type="module">
+            import { getAreaRectangle } from "./assets/javascripts/two-dimentional-figure.js";
+            import { getBallVolume } from "./assets/javascripts/three-dimentional-figure.js";
+            console.log(getAreaRectangle(10, 20));
+            console.log(getBallVolume(10));
+        </script>
+    </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Callbacks</title>
+    </head>
+    <body>
+        <div id="container">Phincon Academy</div>
+        <div id="secondContainer">Second Container</div>
+        <div id="demo"></div>
+        <img id="pokemonImage" src="" alt="pokemon" />
+        <script>
+            function displayMessage(message) {
+                const container = document.getElementById("container");
+                container.textContent = message;
+            }
+            function calculateData(a, b, callback) {
+                const result = a + b;
+                callback(result);
+            }
+
+            calculateData(2, 3, displayMessage);
+
+            const multiplyOne = (data) => {
+                return data * 1;
+            };
+            const multiplyTwo = (data) => {
+                return data * 2;
+            };
+            const multiplyThree = (data) => {
+                return data * 3;
+            };
+            const multiplyFour = (data) => {
+                const result = multiplyOne(data);
+                return multiplyTwo(result);
+            };
+            const multiplyFive = (data) => {
+                const result = multiplyFour(data);
+                const secondResult = multiplyTwo(result);
+                return multiplyThree(secondResult);
+            };
+            console.log(multiplyFive(5));
+            const multiplySix = (data, callbackOne, callbackTwo, callbackThree) => {
+                const result = multiplyFive(data);
+                const resultTwo = callbackThree(result);
+                return callbackTwo(resultTwo) * 20;
+            };
+            console.log(multiplySix(10, multiplyThree, multiplyTwo, multiplyThree));
+
+            const multiplySeven = (data, callback) => {
+                return callback(data);
+            };
+            const result = multiplySeven(10, function (test) {
+                return test * 30;
+            });
+            console.log(result);
+
+            setTimeout(() => {
+                console.log("A");
+            }, 5000);
+            setTimeout(() => {
+                console.log("B");
+            }, 3000);
+
+            async function myDisplay() {
+                let myPromise = new Promise(function (resolve) {
+                    resolve("I love You !!");
+                });
+                document.getElementById("demo").innerHTML = await myPromise;
+            }
+            myDisplay();
+
+            async function getPokemonData() {
+                const response = await fetch("https://pokeapi.co/api/v2/pokemon/ditto");
+                const data = await response.json();
+                const pokemonImage = data.sprites.front_default;
+                const pokemonImageElement = document.getElementById("pokemonImage");
+                pokemonImageElement.src = pokemonImage;
+                console.log(pokemonImage);
+            }
+            getPokemonData();
+        </script>
+    </body>
+</html>

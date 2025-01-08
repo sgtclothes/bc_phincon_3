@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+        <title>Phincon Academy</title>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            function Navbar() {
+                const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+
+                const toggleMenu = () => {
+                    setIsMobileMenuOpen(!isMobileMenuOpen);
+                };
+
+                return (
+                    <nav className="bg-gray-800">
+                        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+                            <div className="relative flex items-center justify-between h-16">
+                                <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+                                    <div className="flex items-center">
+                                        <img
+                                            src="https://www.logoai.com/oss/icons/2021/10/27/rA73APprj8wskQ0.png"
+                                            alt="Phincon Academy"
+                                            className="w-5 h-5 mr-5"
+                                        />
+                                        <div className="hidden sm:block flex space-x-4">
+                                            <a
+                                                href="#"
+                                                className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                                            >
+                                                Home
+                                            </a>
+                                            <a
+                                                href="#"
+                                                className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                                            >
+                                                Features
+                                            </a>
+                                            <a
+                                                href="#"
+                                                className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                                            >
+                                                Pricing
+                                            </a>
+                                            <a
+                                                href="#"
+                                                className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                                            >
+                                                Docs
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Mobile Menu Toggle */}
+                                <div className="sm:hidden">
+                                    <button
+                                        onClick={toggleMenu}
+                                        className="text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                                    >
+                                        <svg
+                                            className="h-6 w-6"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M4 6h16M4 12h16M4 18h16"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Mobile Menu */}
+                        {isMobileMenuOpen && (
+                            <div className="sm:hidden bg-gray-800">
+                                <div className="px-2 pt-2 pb-3 space-y-1">
+                                    <a
+                                        href="#"
+                                        className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+                                    >
+                                        Home
+                                    </a>
+                                    <a
+                                        href="#"
+                                        className="text-gray-300 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium"
+                                    >
+                                        Features
+                                    </a>
+                                    <a
+                                        href="#"
+                                        className="text-gray-300 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium"
+                                    >
+                                        Pricing
+                                    </a>
+                                    <a
+                                        href="#"
+                                        className="text-gray-300 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium"
+                                    >
+                                        Docs
+                                    </a>
+                                </div>
+                            </div>
+                        )}
+                    </nav>
+                );
+            }
+            function Features() {
+                const featuresData = [
+                    {
+                        title: "Artificial Intelligence",
+                        description:
+                            "AI is transforming industries by automating tasks, analyzing data, and making intelligent decisions.",
+                        icon: "🤖",
+                    },
+                    {
+                        title: "Blockchain Technology",
+                        description:
+                            "Blockchain enables secure and transparent digital transactions, revolutionizing industries such as finance and supply chain.",
+                        icon: "🔗",
+                    },
+                    {
+                        title: "5G Connectivity",
+                        description:
+                            "5G provides ultra-fast internet speeds, low latency, and massive connectivity, enabling the next era of smart devices.",
+                        icon: "📱",
+                    },
+                    {
+                        title: "Cloud Computing",
+                        description:
+                            "Cloud computing allows businesses to store and access data and applications remotely, reducing infrastructure costs.",
+                        icon: "☁️",
+                    },
+                ];
+
+                return (
+                    <div className="py-12 bg-gray-50">
+                        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+                            <h2 className="text-3xl font-extrabold text-center text-gray-900 mb-8">
+                                Featured Technologies
+                            </h2>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                                {featuresData.map((feature, index) => (
+                                    <div key={index} className="bg-white rounded-lg shadow-lg p-6 text-center">
+                                        <div className="text-4xl mb-4">{feature.icon}</div>
+                                        <h3 className="text-xl font-semibold text-gray-800 mb-2">{feature.title}</h3>
+                                        <p className="text-gray-600">{feature.description}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            function Pricing() {
+                const pricingPlans = [
+                    {
+                        name: "Basic Plan",
+                        price: "$19/month",
+                        features: ["Access to basic tools", "Limited API requests", "Community support"],
+                        mostPopular: false,
+                    },
+                    {
+                        name: "Standard Plan",
+                        price: "$49/month",
+                        features: [
+                            "Access to all tools",
+                            "5000 API requests",
+                            "Priority email support",
+                            "Advanced analytics",
+                        ],
+                        mostPopular: false,
+                    },
+                    {
+                        name: "Premium Plan",
+                        price: "$99/month",
+                        features: [
+                            "Access to all tools",
+                            "Unlimited API requests",
+                            "24/7 support",
+                            "Personalized consultations",
+                            "Premium analytics",
+                        ],
+                        mostPopular: false,
+                    },
+                ];
+
+                return (
+                    <div className="py-12 bg-gray-50">
+                        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+                            <h2 className="text-3xl font-extrabold text-center text-gray-900 mb-8">
+                                Pricing for Technology Solutions
+                            </h2>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                                {pricingPlans.map((plan, index) => (
+                                    <div
+                                        key={index}
+                                        className={`${
+                                            plan.mostPopular ? "border-4 border-blue-500" : "border-2 border-gray-300"
+                                        } bg-white rounded-lg shadow-lg p-6 text-center`}
+                                    >
+                                        <h3 className="text-2xl font-semibold text-gray-800 mb-4">{plan.name}</h3>
+                                        <p className="text-3xl font-bold text-gray-900 mb-4">{plan.price}</p>
+                                        <ul
+                                            className="space-y-2 text-left text-gray-600 mb-6"
+                                            style={{ minHeight: "150px", overflowY: "auto" }}
+                                        >
+                                            {plan.features.map((feature, i) => (
+                                                <li key={i} className="flex items-center">
+                                                    <svg
+                                                        className="h-5 w-5 text-green-500 mr-2"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke="currentColor"
+                                                        aria-hidden="true"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth="2"
+                                                            d="M5 13l4 4L19 7"
+                                                        />
+                                                    </svg>
+                                                    <span style={{ minWidth: "150px" }}>{feature}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition">
+                                            Choose Plan
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            function Docs() {
+                const documentationSections = [
+                    {
+                        title: "Getting Started",
+                        content:
+                            "Learn how to quickly set up your project with our technology stack, including installation guides and initial setup.",
+                    },
+                    {
+                        title: "API Reference",
+                        content:
+                            "Detailed documentation of all available APIs, including endpoints, parameters, and response formats.",
+                    },
+                    {
+                        title: "Guides & Tutorials",
+                        content:
+                            "Step-by-step tutorials and use case guides to help you make the most of our technology platform.",
+                    },
+                    {
+                        title: "FAQs",
+                        content:
+                            "Find answers to the most frequently asked questions to resolve common issues and clarify usage.",
+                    },
+                ];
+
+                return (
+                    <div className="py-12 bg-white">
+                        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+                            <h2 className="text-3xl font-extrabold text-center text-gray-900 mb-8">Documentation</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                {documentationSections.map((section, index) => (
+                                    <div
+                                        key={index}
+                                        className="bg-gray-50 rounded-lg shadow-md p-6 hover:bg-gray-100 transition"
+                                    >
+                                        <h3 className="text-xl font-semibold text-gray-800 mb-4">{section.title}</h3>
+                                        <p className="text-gray-600">{section.content}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            const Home = () => {
+                return (
+                    <>
+                        <Navbar />
+                        <Features />
+                        <Pricing />
+                        <Docs />
+                    </>
+                );
+            };
+            const root = ReactDOM.createRoot(document.getElementById("root"));
+            root.render(<Home />);
+        </script>
+    </body>
+</html>
