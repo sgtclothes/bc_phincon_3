@@ -1,35 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import toast, { Toaster } from "react-hot-toast";
+import ProductList from "./components/ProductList";
+import ProductForm from "./components/ProductForm";
+import { useEffect, useState } from "react";
+import { getAllProducts } from "./services/api";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [data, setData] = useState({
+        id: "",
+        name: "",
+        price: "",
+        stock: "",
+        category: "",
+    });
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [mode, setMode] = useState("create");
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    useEffect(() => {
+        (async () => {
+            try {
+                setLoading(true);
+                const productData = await getAllProducts();
+                setProducts(productData);
+            } catch (error) {
+                console.error(error);
+                toast.error(error.message);
+                setError(error);
+            } finally {
+                setLoading(false);
+            }
+        })();
+    }, []);
+
+    return (
+        <>
+            <ProductList
+                setData={setData}
+                setModalIsOpen={setModalIsOpen}
+                products={products}
+                loading={loading}
+                error={error}
+                setMode={setMode}
+                setProducts={setProducts}
+            />
+            <ProductForm
+                mode={mode}
+                setData={setData}
+                data={data}
+                modalIsOpen={modalIsOpen}
+                setModalIsOpen={setModalIsOpen}
+                setProducts={setProducts}
+            />
+            <Toaster position="top-right" />
+        </>
+    );
 }
 
-export default App
+export default App;
