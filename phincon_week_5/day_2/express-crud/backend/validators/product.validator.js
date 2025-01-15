@@ -4,11 +4,12 @@ const ResponseUtil = require("../utils/response.util");
 module.exports = {
     validatorBodyProduct: (req, res, next) => {
         try {
+            console.log("middleware", req.body);
             const schema = Joi.object({
                 name: Joi.string().min(3).required(),
-                price: Joi.number().strict().required(),
+                price: Joi.number().required(),
                 category: Joi.string().required(),
-                stock: Joi.number().strict().required(),
+                stock: Joi.number().required(),
             });
             const validationError = schema.validate(req.body).error;
             if (validationError) {

@@ -41,14 +41,19 @@ module.exports = {
             ResponseUtil.error(res, error.message);
         }
     },
-    middlewareDeleteProduct: (req, res) => {
+    middlewareDeleteProduct: (req, res, next) => {
         const { id } = req.params;
         try {
-            const product = products.products.find((product) => product.id === id);
-            if (!product) {
+            let indexTarget = null;
+            products.products.forEach((product, index) => {
+                if (product.id === id) {
+                    indexTarget = index;
+                }
+            });
+            if (indexTarget === undefined || indexTarget === null) {
                 return ResponseUtil.error(res, "Product not found", 404);
             }
-            req.product = product;
+            req.indexTarget = indexTarget;
             next();
         } catch (error) {
             console.error(error.message);

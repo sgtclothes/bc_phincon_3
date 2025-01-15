@@ -6,7 +6,8 @@ const ResponseUtil = require("../utils/response.util");
 module.exports = {
     getAllProducts: (req, res) => {
         try {
-            ResponseUtil.success(res, products);
+            const productsFS = JSON.parse(fs.readFileSync("data/products.json", "utf-8"));
+            ResponseUtil.success(res, productsFS);
         } catch (error) {
             console.error(error.message);
             ResponseUtil.error(res, error.message);
@@ -51,10 +52,10 @@ module.exports = {
     },
     deleteProduct: (req, res) => {
         try {
-            const product = req.product;
-            products.products.splice(product, 1);
+            const indexTarget = req.indexTarget;
+            products.products.splice(indexTarget, 1);
             fs.writeFileSync("data/products.json", JSON.stringify(products));
-            ResponseUtil.success(res, product);
+            ResponseUtil.success(res, indexTarget);
         } catch (error) {
             console.error(error.message);
             ResponseUtil.error(res, error.message);

@@ -1,0 +1,28 @@
+{
+    "name": "express-sequelize",
+    "version": "1.0.0",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon server.js",
+        "migrate": "npx sequelize-cli db:migrate",
+        "seed": "npx sequelize-cli db:seed:all",
+        "rollback": "npx sequelize-cli db:migrate:undo:all",
+        "refresh": "npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "dotenv": "^16.4.7",
+        "express": "^4.21.2",
+        "mysql2": "^3.12.0",
+        "nodemon": "^3.1.9",
+        "sequelize": "^6.37.5",
+        "sequelize-cli": "^6.6.2"
+    },
+    "devDependencies": {
+        "@faker-js/faker": "^9.3.0"
+    }
+}

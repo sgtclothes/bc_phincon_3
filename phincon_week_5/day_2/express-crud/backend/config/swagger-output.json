@@ -43,11 +43,11 @@
                 "properties": {
                   "category": {
                     "type": "string",
-                    "example": "Electronics"
+                    "example": "Dekorasi"
                   },
                   "name": {
                     "type": "string",
-                    "example": "Television"
+                    "example": "Laci"
                   },
                   "price": {
                     "type": "number",
@@ -62,8 +62,8 @@
               "examples": {
                 "Create Product": {
                   "value": {
-                    "category": "Electronics",
-                    "name": "Television",
+                    "category": "Dekorasi",
+                    "name": "Laci",
                     "price": 20000000,
                     "stock": 500
                   }
@@ -91,7 +91,7 @@
         }
       }
     },
-    "/api/products/79b4ea94-c4e6-47e4-aef5-118d904897f2": {
+    "/api/products/6841d5d0-63ec-4505-956e-9130f9a0b326": {
       "put": {
         "summary": "Update Product",
         "description": "Update Product",
@@ -138,11 +138,71 @@
             "description": ""
           }
         }
-      },
+      }
+    },
+    "/api/products/06e841b7-2bcf-44b6-abfc-4fae243fd343": {
       "delete": {
         "summary": "Delete Product",
         "description": "Delete Product",
         "operationId": "deleteProduct",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/students": {
+      "get": {
+        "summary": "Get All Students",
+        "description": "Get All Students",
+        "operationId": "getAllStudents",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Student",
+        "description": "Delete Student",
+        "operationId": "deleteStudent",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/theses": {
+      "get": {
+        "summary": "Get All Theses",
+        "description": "Get All Theses",
+        "operationId": "getAllTheses",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/theses/subquery": {
+      "get": {
+        "summary": "Get All Theses Subquery",
+        "description": "Get All Theses Subquery",
+        "operationId": "getAllThesesSubquery",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/products/discount-price": {
+      "get": {
+        "summary": "Get All Product Discount Price",
+        "description": "Get All Product Discount Price",
+        "operationId": "getAllProductDiscountPrice",
         "responses": {
           "200": {
             "description": ""
