@@ -9,80 +9,104 @@ import { deleteProduct, getAllProducts } from "../services/api";
 export default function ProductList({ setMode, setModalIsOpen, products, loading, error, setData, setProducts }) {
     const [isVisible, setIsVisible] = useState(true);
 
+    // const columns = [
+    //     {
+    //         name: "No",
+    //         selector: (row, index) => index + 1,
+    //         sortable: false,
+    //         style: {
+    //             minWidth: "50px",
+    //         },
+    //     },
+    //     {
+    //         name: "Name",
+    //         selector: (row) => row.name,
+    //         sortable: true,
+    //         style: {
+    //             minWidth: "150px",
+    //         },
+    //     },
+    //     {
+    //         name: "Price",
+    //         selector: (row) => row.price,
+    //         sortable: true,
+    //         style: {
+    //             minWidth: "150px",
+    //         },
+    //     },
+    //     {
+    //         name: "Category",
+    //         selector: (row) => row.category,
+    //         sortable: true,
+    //         style: {
+    //             minWidth: "150px",
+    //         },
+    //     },
+    //     {
+    //         name: "Stock",
+    //         selector: (row) => row.stock,
+    //         sortable: true,
+    //         style: {
+    //             minWidth: "100px",
+    //         },
+    //     },
+    //     {
+    //         name: "Actions",
+    //         cell: (row) => (
+    //             <div className="flex space-x-2 items-center">
+    //                 <button
+    //                     className="bg-yellow-500 w-20 h-5 hover:bg-yellow-700 text-white font-bold rounded"
+    //                     onClick={() => {
+    //                         setMode("update");
+    //                         setModalIsOpen(true);
+    //                         console.log("Edit", row);
+    //                         setData(row);
+    //                     }}
+    //                 >
+    //                     Edit
+    //                 </button>
+    //                 <button
+    //                     className="bg-red-500 hover:bg-red-700 w-20 h-5 text-white font-bold rounded"
+    //                     onClick={async () => {
+    //                         const response = await deleteProduct(row.id);
+    //                         if (response.success) {
+    //                             const products = await getAllProducts();
+    //                             setProducts(products);
+    //                         }
+    //                     }}
+    //                 >
+    //                     Delete
+    //                 </button>
+    //             </div>
+    //         ),
+    //         ignoreRowClick: true,
+    //         style: {
+    //             minWidth: "200px",
+    //         },
+    //     },
+    // ];
+
+    const users = [
+        {
+            id: 1,
+            firstname: "Rofi",
+            lastname: "Dailamy",
+        },
+        {
+            id: 2,
+            firstname: "Sigit",
+            lastname: "Sasongko",
+        },
+    ];
+
     const columns = [
         {
-            name: "No",
-            selector: (row, index) => index + 1,
-            sortable: false,
-            style: {
-                minWidth: "50px",
-            },
+            name: "Firstname",
+            selector: (row) => row.firstname,
         },
         {
-            name: "Name",
-            selector: (row) => row.name,
-            sortable: true,
-            style: {
-                minWidth: "150px",
-            },
-        },
-        {
-            name: "Price",
-            selector: (row) => row.price,
-            sortable: true,
-            style: {
-                minWidth: "150px",
-            },
-        },
-        {
-            name: "Category",
-            selector: (row) => row.category,
-            sortable: true,
-            style: {
-                minWidth: "150px",
-            },
-        },
-        {
-            name: "Stock",
-            selector: (row) => row.stock,
-            sortable: true,
-            style: {
-                minWidth: "100px",
-            },
-        },
-        {
-            name: "Actions",
-            cell: (row) => (
-                <div className="flex space-x-2 items-center">
-                    <button
-                        className="bg-yellow-500 w-20 h-5 hover:bg-yellow-700 text-white font-bold rounded"
-                        onClick={() => {
-                            setMode("update");
-                            setModalIsOpen(true);
-                            console.log("Edit", row);
-                            setData(row);
-                        }}
-                    >
-                        Edit
-                    </button>
-                    <button
-                        className="bg-red-500 hover:bg-red-700 w-20 h-5 text-white font-bold rounded"
-                        onClick={async () => {
-                            const response = await deleteProduct(row.id);
-                            if (response.success) {
-                                const products = await getAllProducts();
-                                setProducts(products);
-                            }
-                        }}
-                    >
-                        Delete
-                    </button>
-                </div>
-            ),
-            ignoreRowClick: true,
-            style: {
-                minWidth: "200px",
-            },
+            name: "Lastname",
+            selector: (row) => row.lastname,
         },
     ];
 
@@ -99,12 +123,19 @@ export default function ProductList({ setMode, setModalIsOpen, products, loading
                         onClick={() => {
                             setMode("create");
                             setModalIsOpen(true);
+                            setData({
+                                id: "",
+                                name: "",
+                                price: "",
+                                stock: "",
+                                category: "",
+                            });
                         }}
                     >
                         + Create Product
                     </button>
                 </div>
-                <DataTable
+                {/* <DataTable
                     columns={columns}
                     data={products}
                     className="table"
@@ -113,7 +144,8 @@ export default function ProductList({ setMode, setModalIsOpen, products, loading
                     highlightOnHover
                     pointerOnHover
                     responsive
-                />
+                /> */}
+                <DataTable columns={columns} data={users} />
             </div>
         </motion.div>
     );

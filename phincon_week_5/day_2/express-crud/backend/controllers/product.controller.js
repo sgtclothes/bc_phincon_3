@@ -29,7 +29,7 @@ module.exports = {
             const newProduct = { id: uuidv4(), name, price, category, stock };
             productsFS.products.push(newProduct);
             fs.writeFileSync("data/products.json", JSON.stringify(productsFS));
-            ResponseUtil.success(res, newProduct);
+            ResponseUtil.success(res, newProduct, "Product created successfully", 201);
         } catch (error) {
             console.error(error.message);
             ResponseUtil.error(res, error.message);
@@ -44,7 +44,7 @@ module.exports = {
             product.category = category;
             product.stock = stock;
             fs.writeFileSync("data/products.json", JSON.stringify(products));
-            ResponseUtil.success(res, product);
+            ResponseUtil.success(res, product, "Product updated successfully", 200);
         } catch (error) {
             console.error(error.message);
             ResponseUtil.error(res, error.message);

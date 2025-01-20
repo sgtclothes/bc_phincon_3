@@ -38,6 +38,7 @@ export default function ProductForm({ mode, modalIsOpen, setModalIsOpen, setProd
         if (response.success) {
             const products = await getAllProducts();
             setProducts(products);
+            toast.success(response.message);
         }
         setModalIsOpen(false);
     }

@@ -5,9 +5,9 @@ const studentRoutes = require("./student.route");
 const thesisRoutes = require("./thesis.route");
 const advisorRoutes = require("./advisor.route");
 
-router.use("/api/products", productRoutes);
-router.use("/api/students", studentRoutes);
-router.use("/api/theses", thesisRoutes);
-router.use("/api/advisors", advisorRoutes);
+router.use("/products", productRoutes);
+router.use("/students", studentRoutes);
+router.use("/theses", thesisRoutes);
+router.use("/advisors", advisorRoutes);
 
 module.exports = router;
