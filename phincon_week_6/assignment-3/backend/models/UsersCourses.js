@@ -8,11 +8,21 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            // define association here
+            UsersCourses.hasOne(models.CourseSchedules, {
+                foreignKey: "usersCoursesId",
+                onUpdate: "CASCADE",
+                onDelete: "CASCADE",
+            });
         }
     }
     UsersCourses.init(
         {
+            id: {
+                allowNull: false,
+                primaryKey: true,
+                type: DataTypes.UUID,
+                defaultValue: DataTypes.UUIDV4,
+            },
             userId: DataTypes.UUID,
             courseId: DataTypes.UUID,
         },

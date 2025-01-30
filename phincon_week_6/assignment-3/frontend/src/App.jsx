@@ -1,35 +1,83 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import { useEffect, useState } from "react";
+import { logout } from "./services/api";
+import CourseDetail from "./pages/CourseDetail";
+import Header from "./components/Header";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const navigate = useNavigate();
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [username, setUsername] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    useEffect(() => {
+        if (localStorage.getItem("isAuthenticated")) {
+            setIsAuthenticated(true);
+            setUsername(localStorage.getItem("course-app-username"));
+        }
+    }, []);
+
+    const handleLogout = async () => {
+        await logout();
+        localStorage.clear();
+        setUsername(null);
+        setIsAuthenticated(false);
+        navigate("/");
+    };
+
+    return (
+        <>
+            <Header isAuthenticated={isAuthenticated} username={username} handleLogout={handleLogout} />
+            <Routes>
+                <Route
+                    path="/"
+                    element={
+                        <LandingPage
+                            isAuthenticated={isAuthenticated}
+                            username={username}
+                            handleLogout={handleLogout}
+                            loading={loading}
+                            error={error}
+                            setLoading={setLoading}
+                            setError={setError}
+                        />
+                    }
+                />
+                {!isAuthenticated ? (
+                    <Route
+                        path="/login"
+                        element={
+                            <Login
+                                setIsAuthenticated={setIsAuthenticated}
+                                loading={loading}
+                                error={error}
+                                setLoading={setLoading}
+                                setError={setError}
+                                setUsername={setUsername}
+                            />
+                        }
+                    />
+                ) : (
+                    <Route path="/login" element={<Navigate to="/" />} />
+                )}
+                {!isAuthenticated ? (
+                    <Route path="/register" element={<Register />} />
+                ) : (
+                    <Route path="/register" element={<Navigate to="/" />} />
+                )}
+                <Route
+                    path="course-detail/:id"
+                    element={
+                        <CourseDetail isAuthenticated={isAuthenticated} loading={loading} error={error} setLoading={setLoading} setError={setError} />
+                    }
+                />
+            </Routes>
+        </>
+    );
 }
 
-export default App
+export default App;

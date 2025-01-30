@@ -11,6 +11,105 @@
     }
   ],
   "paths": {
+    "/api/auth/register": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Register",
+        "description": "Register",
+        "operationId": "register",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "sigit.center31@gmail.com"
+                  },
+                  "fullname": {
+                    "type": "string",
+                    "example": "Sigit Sasongko"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "abcDEF123!"
+                  },
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": "085725363779"
+                  },
+                  "username": {
+                    "type": "string",
+                    "example": "sigit"
+                  }
+                }
+              },
+              "examples": {
+                "Register": {
+                  "value": {
+                    "email": "sigit.center31@gmail.com",
+                    "fullname": "Sigit Sasongko",
+                    "password": "abcDEF123!",
+                    "phoneNumber": "085725363779",
+                    "username": "sigit"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Login",
+        "description": "Login",
+        "operationId": "login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "sigit.center31@gmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "abcDEF123!"
+                  }
+                }
+              },
+              "examples": {
+                "Login": {
+                  "value": {
+                    "email": "sigit.center31@gmail.com",
+                    "password": "abcDEF123!"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/api/products": {
       "get": {
         "summary": "Get All Products",
@@ -211,5 +310,9 @@
       }
     }
   },
-  "tags": []
+  "tags": [
+    {
+      "name": "Authentication"
+    }
+  ]
 }

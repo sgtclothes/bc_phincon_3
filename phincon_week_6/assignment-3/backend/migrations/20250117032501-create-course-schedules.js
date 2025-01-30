@@ -9,15 +9,19 @@ module.exports = {
                 type: Sequelize.UUID,
                 defaultValue: Sequelize.UUIDV4,
             },
-            schedule: {
+            startDate: {
                 type: Sequelize.DATE,
                 allowNull: false,
             },
-            courseId: {
+            endDate: {
+                type: Sequelize.DATE,
+                allowNull: false,
+            },
+            usersCoursesId: {
                 type: Sequelize.UUID,
                 allowNull: false,
                 references: {
-                    model: "courses",
+                    model: "users_courses",
                     key: "id",
                 },
             },

@@ -16,7 +16,9 @@ module.exports = {
     middlewareGetProductById: (req, res, next) => {
         try {
             const { id } = req.params;
+            console.log("id", id);
             const product = products.products.find((product) => product.id === id);
+            console.log("product", product);
             if (!product) {
                 return ResponseUtil.error(res, "Product not found", 404);
             }

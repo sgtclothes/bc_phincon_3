@@ -1,8 +1,26 @@
 const Joi = require("joi");
 const { User } = require("../models");
 const { Op } = require("sequelize");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
+    middlewareAuth: async (req, res, next) => {
+        try {
+            const token = req.cookies["course-app"];
+            if (!token) {
+                return res.status(401).json({
+                    status: "error",
+                    message: "Unauthorized",
+                });
+            }
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            req.user = decoded;
+            next();
+        } catch (error) {
+            console.error(error.message);
+            res.status(500).send(error.message);
+        }
+    },
     middlewareAuthRegister: async (req, res, next) => {
         try {
             const schema = Joi.object({

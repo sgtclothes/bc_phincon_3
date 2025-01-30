@@ -12,6 +12,18 @@ export const getAllProducts = async () => {
     }
 };
 
+export const getProductById = async (id) => {
+    try {
+        const response = await fetch(`${API_URL}/products/${id}`);
+        if (!response.ok) throw new Error("Failed to fetch product");
+        const json = await response.json();
+        return json?.data;
+    } catch (error) {
+        console.error(error.message);
+        throw new Error(error.message);
+    }
+};
+
 export const createProduct = async (product) => {
     try {
         const response = await fetch(`${API_URL}/products`, {

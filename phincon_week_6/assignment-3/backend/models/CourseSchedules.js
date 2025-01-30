@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            CourseSchedules.belongsTo(models.Course, {
-                foreignKey: "courseId",
+            CourseSchedules.belongsTo(models.UsersCourses, {
+                foreignKey: "usersCoursesId",
                 onUpdate: "CASCADE",
                 onDelete: "CASCADE",
             });
@@ -17,8 +17,9 @@ module.exports = (sequelize, DataTypes) => {
     }
     CourseSchedules.init(
         {
-            schedule: DataTypes.DATE,
-            courseId: DataTypes.UUID,
+            startDate: DataTypes.DATE,
+            endDate: DataTypes.DATE,
+            usersCoursesId: DataTypes.UUID,
         },
         {
             sequelize,

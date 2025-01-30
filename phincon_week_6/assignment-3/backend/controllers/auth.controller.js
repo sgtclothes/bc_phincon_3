@@ -64,4 +64,16 @@ module.exports = {
             res.status(500).send(error.message);
         }
     },
+    logout: async (req, res) => {
+        try {
+            res.clearCookie("course-app");
+            res.status(200).json({
+                status: "success",
+                message: "User logged out successfully",
+            });
+        } catch (error) {
+            console.error(error.message);
+            res.status(500).send(error.message);
+        }
+    },
 };

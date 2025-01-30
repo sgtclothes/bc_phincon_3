@@ -2,23 +2,25 @@
 
 const { v4: uuidv4 } = require("uuid");
 const { faker } = require("@faker-js/faker");
-const { Course } = require("../models");
+const { UsersCourses } = require("../models");
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        const courses = await Course.findAll({
+        const usersCourses = await UsersCourses.findAll({
             attributes: ["id"],
         });
-        const randomCourseIds = courses.map((course) => course.id);
-        const getRandomCourseId = () => randomCourseIds[Math.floor(Math.random() * randomCourseIds.length)];
+        const randomUsersCoursesIds = usersCourses.map((usersCourse) => usersCourse.id);
+        const getRandomUsersCoursesId = () => randomUsersCoursesIds[Math.floor(Math.random() * randomUsersCoursesIds.length)];
         let coursesSchedules = [];
         let count = 5;
         for (let i = 0; i < count; i++) {
+            const startDate = faker.date.future();
             coursesSchedules.push({
                 id: uuidv4(),
-                schedule: faker.date.future(),
-                courseId: getRandomCourseId(),
+                startDate,
+                endDate: new Date(startDate.getTime() + 7 * 24 * 60 * 60 * 1000),
+                usersCoursesId: getRandomUsersCoursesId(),
             });
         }
         await queryInterface.bulkInsert("course_schedules", coursesSchedules, {});
