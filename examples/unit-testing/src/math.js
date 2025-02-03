@@ -14,3 +14,4 @@ test("GET /users harus mengembalikan status 200", async () => {
     const response = await request(app).get("/users");
     expect(response.statusCode).toBe(200);
 });
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Captcha Express</title>
+    </head>
+    <body>
+        <h2>Captcha Validation</h2>
+        <img id="captcha-image" alt="Captcha" />
+        <button onclick="reloadCaptcha()">Reload Captcha</button>
+
+        <form id="captcha-form">
+            <input type="text" id="captcha-input" placeholder="Masukkan captcha" required />
+            <button type="button" onclick="verifyCaptcha()">Submit</button>
+        </form>
+
+        <p id="captcha-result"></p>
+
+        <script>
+            function reloadCaptcha() {
+                document.getElementById("captcha-image").src = "http://localhost:3000/captcha?" + Date.now();
+            }
+
+            async function verifyCaptcha() {
+                const captchaInput = document.getElementById("captcha-input").value;
+
+                const response = await fetch("http://localhost:3000/verify-captcha", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    credentials: "include",
+                    body: JSON.stringify({ captchaInput }),
+                });
+
+                const data = await response.json();
+                document.getElementById("captcha-result").innerText = data.message;
+                if (data.success) {
+                    reloadCaptcha();
+                }
+            }
+
+            // Load captcha saat pertama kali
+            reloadCaptcha();
+        </script>
+    </body>
+</html>
