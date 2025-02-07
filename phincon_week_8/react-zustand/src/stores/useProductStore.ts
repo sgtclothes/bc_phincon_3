@@ -35,6 +35,4 @@ export const useProductStore = create<ProductStore>((set, get) => ({
             set({ isLoading: false });
         }
     },
-    updateProduct: (id: string, product: ProductDTO) => {},
-    deleteProduct: (id: string) => {},
 }));

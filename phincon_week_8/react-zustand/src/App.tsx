@@ -5,7 +5,7 @@ import { ProductDTO } from "./types/product";
 
 function App() {
     const { count, increment, decrement, clearCounter } = useCounterStore();
-    const { products, getAllProducts, isLoading, mode, createProduct, updateProduct } = useProductStore();
+    const { products, getAllProducts, isLoading, mode, createProduct } = useProductStore();
     const [isFormCreateProductOpen, setIsFormCreateProductOpen] = useState(false);
     const [product, setProduct] = useState<ProductDTO>({
         id: "",
@@ -24,7 +24,7 @@ function App() {
             if (mode === "create") {
                 await createProduct(product);
             } else if (mode === "update") {
-                await updateProduct(product.id, product);
+                // await updateProduct(product.id, product);
             }
         } catch (error) {
             console.error(error);

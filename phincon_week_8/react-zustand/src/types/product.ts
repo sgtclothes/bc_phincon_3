@@ -19,6 +19,4 @@ export interface ProductStore {
     error: string | null;
     getAllProducts: () => Promise<void>;
     createProduct: (product: ProductDTO) => Promise<void>;
-    updateProduct: (id: string, product: ProductDTO) => Promise<void>;
-    deleteProduct: (id: string) => Promise<void>;
 }
